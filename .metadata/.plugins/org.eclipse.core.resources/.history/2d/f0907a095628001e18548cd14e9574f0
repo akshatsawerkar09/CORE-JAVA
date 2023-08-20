@@ -1,0 +1,26 @@
+package nested_classes;
+
+public class Outer2 {
+
+	private int i;
+
+	public Outer2(int i) {
+		this.i = i;
+	}
+
+	class Inner2 {
+
+		private int i;
+
+		public Inner2(int i) {
+			super();
+			this.i = i;
+		}
+
+		void show(int i) {
+			System.out.println();
+		}
+
+	}
+
+}

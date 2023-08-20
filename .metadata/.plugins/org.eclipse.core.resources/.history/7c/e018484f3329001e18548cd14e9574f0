@@ -1,0 +1,143 @@
+package tester;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+import com.app.customer.Customer;
+import com.app.customer.CustomerType;
+
+import static utils.CustomerValidations.*;
+
+public class CustomerRegistration {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in);) {
+
+			System.out.println("Enter number of customers");
+
+			ArrayList<Customer> customersList = new ArrayList<>();
+
+			while (true) {
+
+				System.out.println(
+						"1.Register new customer\n2.Display all customers\n3.Change Phone No\n4.Dislay all customers details\n5.Exit");
+
+				switch (sc.nextInt()) {
+
+				case 1:
+
+					/*
+					 * 2.1 Customer Registration I/P : email , password , name , registration amount
+					 * , dob , customer type In case of no dup found add , customer details Don't
+					 * link customer address here.
+					 */
+
+					System.out.println("Enter email");
+
+					String email = checkEmail(sc.next());
+
+					email = checkDuplicateEmail(customersList, email);
+
+					System.out.println("Enter password");
+
+					String password = checkPassword(sc.next());
+
+					System.out.println("Enter name");
+
+					String name = sc.next();
+
+					System.out.println("Enter registration amount");
+
+					double registrationAmount = checkRegAmount(sc.nextDouble());
+
+					System.out.println("Enter Dob");
+
+					Date dob = checkDob(sdf.parse(sc.next()));
+
+					System.out.println("Enter customer type");
+
+					CustomerType customerType = CustomerType.valueOf(sc.next().toUpperCase());
+
+					Customer customer = new Customer(email, password, name, registrationAmount, dob, customerType);
+
+					customersList.add(customer);
+
+					System.out.println("Customer Registered successfully!!!!");
+
+					break;
+				case 2:
+					/*
+					 * 2.2 Fetch Customer Details I/P : email , dob Return customer details , if
+					 * found , otherwise display error mesg , via catch block
+					 */
+					int count = 0;
+					System.out.println("Enter email");
+					String customerEmail = checkEmail(sc.next());
+					System.out.println("Enter dob");
+					Date customerDob = checkDob(sdf.parse(sc.next()));
+					for (Customer c : customersList) {
+						if (c != null) {
+							if (c.getEmail().equals(customerEmail) && c.getDob().equals(customerDob)) {
+								System.out.println(c);
+								count++;
+								break;
+							}
+						}
+					}
+					if (count == 0) {
+						System.out.println("No Customer from speciefied city");
+					}
+					break;
+				case 3:
+
+					/*
+					 * 2.3 Customer Login I/P : email , dob , password Display Login successful mesg
+					 * in case of correct credentials, otherwise display error mesg , via catch
+					 * block
+					 */
+
+					System.out.println("Enter email");
+					String custEmail = checkEmail(sc.next());
+					System.out.println("Enter dob");
+					Date custDob = checkDob(sdf.parse(sc.next()));
+					System.out.println("Enter password");
+					String custPassword = checkPassword(sc.next());
+
+					for (Customer c : customersList) {
+						if (c != null) {
+							if (c.getEmail().equals(custEmail) && c.getDob().equals(custDob)
+									&& c.getPassword().equals(custPassword)) {
+								System.out.println(c);
+								break;
+							}
+						}
+					}
+					break;
+				case 4:
+					System.out.println("Display all customers details");
+					for (Customer c : customers) {
+						if (c != null) {
+							System.out.println(c);
+						}
+					}
+					break;
+				case 5:
+					sc.close();
+					System.exit(0);
+					break;
+
+				default:
+					break;
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

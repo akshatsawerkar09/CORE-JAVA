@@ -1,0 +1,50 @@
+package com.app.geometry;
+
+public class Point2D {
+
+	private int x, y;
+
+	// 3.1 Create a parameterized constructor to accept x & y co-ords.
+	public Point2D(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	// 3.2 Add public String getDetails()) --to return string form point's x & y
+	// co-ords
+	public String getDetails() {
+		return x + " " + y;
+	}
+
+	/*
+	 * 3.3 Add isEqual method to Point2D class : boolean returning method : must
+	 * return true if both points are having same x,y co-ords or false otherwise. eg
+	 * : boolean isEqual(Point2D anotherPoint){....}
+	 */
+	public boolean isEqual(Point2D anotherPoint) {
+		return (this.x == anotherPoint.x) && (this.y == anotherPoint.y);
+	}
+
+	/*
+	 * 3.4 Add a method to Point2D class -- to create and return new point having
+	 * given x & y offset. eg : Point2D p1=new Point2D(10,20); Point2d
+	 * p3=p1.createNewPoint(5,-2);//p3 : 15,18 If user supplies offset of (5, -2) :
+	 * your method should return a new point object placed at (15,18) eg : Point2D
+	 * createNewPoint(int xOff,iny yOff){...}
+	 */
+	public Point2D createNewPoint(int xOff, int yOff) {
+		Point2D tmp = new Point2D(this.x + xOff, this.y + yOff);
+		return tmp;
+	}
+
+	/*
+	 * 3.5 Add calculateDistance method to calculate distance between current point
+	 * & specified point & return the distance to the caller. (eg double
+	 * calcDistance(Point2D p2)) Hint : Use distance formula . Use java.lang.Math
+	 * class methods --sqrt, pow etc.
+	 */
+	public double calcDistance(Point2D p2) {
+		return Math.sqrt(Math.pow(p2.x - this.x, 2) + Math.pow(p2.y - this.y, 2));
+	}
+
+}

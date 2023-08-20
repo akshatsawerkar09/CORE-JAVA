@@ -1,0 +1,18 @@
+package utils;
+
+import com.app.fruits.Fruit;
+
+public class FruitUtils {
+
+	/*
+	 * 2.2 Create FruitUtils class. : in a package "utils" Add a static method ,
+	 * "addFruit" to add any fruit to the Fruit Basket. eg : public static void
+	 * addFruit(Fruit f,Fruit[] basket1,int counter){ basket1[counter]=f; }
+	 */
+
+	public static void addFruit(Fruit f, Fruit[] basket1, int counter) {
+
+		basket1[counter] = f;
+	}
+
+}

@@ -1,0 +1,73 @@
+package tester;
+
+import java.util.Scanner;
+
+import com.app.core.Department;
+import com.app.core.Emp;
+
+import static utils.EmpValidationConstraints.*;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in)) {
+
+			Emp[] emps = new Emp[100];
+
+			int counter = 0;
+
+			boolean exit = false;
+
+			while (!exit) {
+
+				try {
+
+					System.out.println("Options\n1.Add Emp\n2.Show\n3.Exit");
+
+					switch (sc.nextInt()) {
+					case 1:
+						System.out.println("Enter emp details : id, name, sal, joinDate(day-mon-yr), dept");
+
+						Emp e = validateEmpDetails(emps, sc.nextInt(), sc.next(), sc.nextDouble(), sc.next(),
+								sc.next());
+
+						System.out.println("Emp registered successfully!!!!");
+
+						System.out.println("Enter adhar card details : card_no, date, location");
+
+						e.linkAdharCard(sc.next(), sdf.parse(sc.next()), validateAdharCardLocation(sc.next()));
+
+						System.out.println("Adhar card linked successfully!!!!");
+
+						emps[counter++] = e;
+
+						break;
+					case 2:
+						for (Emp e1 : emps) {
+							if (e1 != null) {
+								System.out.println(e1);
+							}
+						}
+						break;
+					case 3:
+						exit = true;
+						break;
+
+					default:
+						break;
+					}
+
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

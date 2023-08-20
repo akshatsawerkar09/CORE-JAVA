@@ -1,0 +1,20 @@
+package generics;
+
+public class TestMe {
+
+	public static void main(String[] args) {
+
+		// create a holder class instance to hold an integer
+		Holder<Integer> h1 = new Holder<Integer>(1234);
+
+		int data = h1.getRef();
+
+		Holder<String> h2 = new Holder<String>("12345");
+
+		String s = h2.getRef();
+
+		// h1 = h2;
+
+	}
+
+}

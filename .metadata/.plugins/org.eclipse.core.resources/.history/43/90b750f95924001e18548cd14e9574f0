@@ -1,0 +1,25 @@
+package tester;
+
+public class TestOrganization {
+
+	public static void main(String[] args) {
+
+		/*
+		 * Write TestOrganization in "tester" package. Create suitable array to store
+		 * organization details. Provide following options
+		 * 
+		 * 1. Hire Manager 2. Hire Worker 3. Display information of all employees
+		 * including net salary using single for-each loop.
+		 * 
+		 * 10 Exit
+		 */
+
+		while (true) {
+
+			System.out.println("1.Hire Manager\n2.Hire Worker\n3.Display information of all employess\n10.Exit");
+
+		}
+
+	}
+
+}

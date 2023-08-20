@@ -1,0 +1,27 @@
+package tester;
+
+import inh.Faculty;
+import inh.Person;
+import inh.Student;
+
+public class TestInheritance3 {
+
+	public static void main(String[] args) {
+
+		Person ref = new Student("rama", "seth", 2019, "edac", 1000, 100);
+
+		((Student) ref).study();
+
+		ref = new Faculty("prafull", "kelkar", 30, "java");
+
+		((Faculty) ref).evaluates();
+
+		if (ref instanceof Student) {
+			((Student) ref).study();
+		} else {
+			System.out.println("Invalid type!!!");
+		}
+
+	}
+
+}

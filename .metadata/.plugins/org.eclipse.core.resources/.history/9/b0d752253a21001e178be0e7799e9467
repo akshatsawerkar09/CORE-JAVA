@@ -1,0 +1,13 @@
+package p1;
+
+public class TestPrimitiveTypes {
+
+	public static void main(String[] args) {
+
+		byte b1 = 10;
+		byte b2 = 12;
+		// byte b3 = (b1+b2); any promotion on byte and short promoted to integer
+
+	}
+
+}

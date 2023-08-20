@@ -1,0 +1,21 @@
+package wrapers;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		Integer i1 = new Integer(1234); // boxing
+
+		int data = i1.intValue(); // unboxing
+
+		i1 = 1234; // auto boxing
+
+		String s = "2345";
+
+		// s++;
+
+		i1++;
+
+	}
+
+}

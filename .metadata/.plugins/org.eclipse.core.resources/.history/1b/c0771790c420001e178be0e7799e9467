@@ -1,0 +1,23 @@
+package com.app.tester;
+
+import java.util.Scanner;
+
+import com.app.geometry.Point2D;
+
+public class TestPoint {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter Point 1 : x & y");
+
+		Point2D p1 = new Point2D(sc.nextInt(), sc.nextInt());
+
+		System.out.println("Enter Point 2 : x & y");
+
+		Point2D p2 = new Point2D(sc.nextInt(), sc.nextInt());
+
+	}
+
+}

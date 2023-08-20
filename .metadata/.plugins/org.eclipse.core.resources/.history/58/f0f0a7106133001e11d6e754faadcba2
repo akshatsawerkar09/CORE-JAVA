@@ -1,0 +1,17 @@
+package p1;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+
+		// create fixed size integer list and display the elements
+
+		List<Integer> list1 = Arrays.asList(10, 23, 1, 234, 56, 78);
+
+	}
+
+}

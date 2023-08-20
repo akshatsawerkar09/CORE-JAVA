@@ -1,0 +1,46 @@
+package tester;
+
+import java.util.Scanner;
+
+import com.app.core.Customer;
+
+public class TestCustomer {
+
+	public static void main(String[] args) {
+
+		/*
+		 * 2.6 Create a TestCustomer class , under tester package. .Use scanner to
+		 * accept user i/ps. Create 3 customers using 3 different constructors(2.1 : c1
+		 * ,2.2 : c2,2.3 :c3 ) Display customer details of all customers. Prompt user ,
+		 * for changing creditLimit of the c3. Display new credit limit on the console.
+		 */
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter name, email, age, crediLimit : ");
+
+		Customer customer1 = new Customer(sc.next(), sc.next(), sc.nextInt(), sc.nextDouble());
+
+		Customer customer2 = new Customer();
+
+		System.out.println("Enter name, email, age");
+
+		Customer customer3 = new Customer(sc.next(), sc.next(), sc.nextInt());
+
+		System.out.println(customer1.getDetails());
+
+		System.out.println(customer2.getDetails());
+
+		System.out.println(customer3.getDetails());
+
+		System.out.println("Enter credit limit for customer 3 ");
+
+		customer3.setCreditLimit(sc.nextDouble());
+
+		System.out.println(customer3.getCreditLimit());
+
+		sc.close();
+
+	}
+
+}

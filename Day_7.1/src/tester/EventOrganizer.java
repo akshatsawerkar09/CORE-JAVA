@@ -1,0 +1,88 @@
+package tester;
+
+import java.util.Scanner;
+
+import inh.Faculty;
+import inh.Person;
+import inh.Student;
+
+public class EventOrganizer {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter max no of participants");
+
+		Person[] participants = new Person[sc.nextInt()];
+
+		boolean exit = false;
+
+		int counter = 0;
+
+		while (!exit) {
+
+			System.out.println(
+					"Menu\n1.Register Student\n2.Register Faculty\n3.Display participant details\n4.Display specific participants details\n10.Exit");
+
+			switch (sc.nextInt()) {
+			case 1:
+				if (counter < participants.length) {
+
+					System.out.println("Enter student details : fn, ln, gradYear, courseName, fess, marks");
+
+					participants[counter++] = new Student(sc.next(), sc.next(), sc.nextInt(), sc.next(),
+							sc.nextDouble(), sc.nextInt());
+
+				} else {
+					System.out.println("Event full!!!!");
+				}
+				break;
+			case 2:
+				if (counter < participants.length) {
+					System.out.println("Enter faculty details : fName, lName, yrs, sme");
+					participants[counter++] = new Faculty(sc.next(), sc.next(), sc.nextInt(), sc.next());
+				} else {
+					System.out.println("Event full!!!");
+				}
+				break;
+			case 3:
+				System.out.println("Participants details");
+				for (Person p : participants) {
+					if (p != null) {
+						System.out.println(p);
+					}
+				}
+				break;
+			case 4:
+				System.out.println("Enter seat no");
+				int index = sc.nextInt() - 1;
+				if (index >= 0 && index < counter) {
+					Person p = participants[index];
+					if (p != null) {
+						System.out.println(p);
+						if (participants[index] instanceof Student) {
+							((Student) p).study();
+						} else {
+							((Faculty) p).evaluates();
+						}
+					}
+
+				} else {
+					System.out.println("Seat no out of range!!!!");
+				}
+				break;
+			case 10:
+				sc.close();
+				exit = true;
+				break;
+
+			default:
+				break;
+			}
+
+		}
+
+	}
+
+}

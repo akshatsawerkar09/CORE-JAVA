@@ -1,0 +1,52 @@
+package lists;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class IntegerList2 {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in)) {
+
+			// create empty array list with default init capacity
+			ArrayList<Integer> list = new ArrayList<>();
+
+			// size = 0, capacity = 10
+			int[] data = { 10, 12, 21, -45, 10, 23, 56, 77, 89, 12 };
+
+			// populate AL with this data
+			for (int i : data) {
+				list.add(i);
+			}
+
+			// display elements in AL
+			System.out.println("AL contents via toString");
+
+			System.out.println(list);
+
+			// search element
+			System.out.println("Enter the element to search");
+
+			System.out.println(list.contains(sc.nextInt()) ? "Presnet" : "Absent");
+
+			System.out.println("Enter the element to display 1st & last occurence of the elemet");
+
+			int element = sc.nextInt();
+
+			System.out.println("first occur " + list.indexOf(element) + " last occur " + list.lastIndexOf(element));
+
+			System.out.println("Enter the index to remove an element");
+
+			System.out.println(list.remove(sc.nextInt()));
+
+			System.out.println("list contents\n" + list);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

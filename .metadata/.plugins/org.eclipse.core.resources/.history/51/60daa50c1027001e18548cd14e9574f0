@@ -1,0 +1,26 @@
+package tester;
+
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+
+import com.app.core.Emp;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		try (Scanner sc = new Scanner(System.in)) {
+
+			System.out.println("Enter emp details : id, name, salary, joinDate(yr-mon-day)");
+
+			Emp e1 = new Emp(sc.nextInt(), sc.next(), sc.nextDouble(), sdf.parse(sc.next()));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

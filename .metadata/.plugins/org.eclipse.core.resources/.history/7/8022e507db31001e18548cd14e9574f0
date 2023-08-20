@@ -1,0 +1,172 @@
+package maps;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+import com.app.core.AcType;
+import com.app.core.BankAccount;
+import static com.app.core.AcType.*;
+import static java.time.LocalDate.parse;
+
+import static utils.BankValidationRules.validateBalance;
+
+import custom_exceptions.AccountHandlingException;
+
+public class BankAccountCRUD {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+
+			// create empty map to store acct details : O(1)
+			HashMap<Integer, BankAccount> accts = new HashMap<>(); // init capacity = 16 load factor = .75f
+
+			boolean exit = false;
+
+			while (!exit) {
+
+				System.out.println(
+						"Options\n1.Open A/C\n2.Display all accts\n3.View A/C summary\n4.Funds Transfer\n5.Close A/c\n6.Apply simple interest\n7.Apply interest on saving type of A/C\n8.Display accts sorted as per asc acct no\n9.Sorted A/C's as per date and balance\n10.Exit");
+
+				try {
+
+					switch (sc.nextInt()) {
+					case 1:
+						// create A/C
+						System.out.println("Enter a/c details acctNo, customerName, acctType, balance, createdOn");
+						// either use containsKey or putIfAbsent
+						int acctNo = sc.nextInt();
+						if (accts.containsKey(acctNo)) {
+							throw new AccountHandlingException("Duplicate A/C no");
+						}
+						// duplicate not detected
+						System.out.println(accts.put(acctNo,
+								new BankAccount(acctNo, sc.next(), AcType.valueOf(sc.next().toUpperCase()),
+										validateBalance(sc.nextDouble()), LocalDate.parse(sc.next()))));
+						System.out.println("A/C created");
+						break;
+					case 2:
+						System.out.println("All Accounts");
+						// System.out.println(accts);
+						// to convert maps to collection
+						for (BankAccount a : accts.values()) {
+							System.out.println(a);
+						}
+						break;
+					case 3: // get A/c summary
+						System.out.println("Enter acct no for checking a/c summary");
+						BankAccount a = accts.get(sc.nextInt());// o(1) auto boxing , JVM key's hashcode - derives
+																// bucket id - empty
+						// rets - null otherwise : invokes equals : true : rest value ref, if false :
+						// rets null
+						if (a == null) {
+							throw new AccountHandlingException("A/c not found : invalid a/c no");
+						}
+						System.out.println("A/c summary " + a);
+						break;
+					case 4: // funds transfer
+						System.out.println("Enter src, dest acct no and transfer amount");
+						int srcAcctNo = sc.nextInt();
+						int destAcctNo = sc.nextInt();
+						double amount = sc.nextDouble();
+						BankAccount src = accts.get(srcAcctNo);
+						if (src == null) {
+							throw new AccountHandlingException("Src A/C not found : invalid a/c no");
+						}
+						BankAccount dest = accts.get(destAcctNo);
+						if (dest == null) {
+							throw new AccountHandlingException("Dest A/C not found : invalid a/c no");
+						}
+						// src and dest exist
+						src.transferFunds(dest, amount);
+						System.out.println("Funds transfered....");
+						break;
+					case 5: // close A/C
+						System.out.println("Enter acct no for closing A/C");
+						a = accts.remove(sc.nextInt());
+						if (a == null) {
+							throw new AccountHandlingException("A/C not found : can't close it!!!!");
+						}
+						System.out.println("A/C closed!!! " + a);
+						break;
+					case 6: // apply interest on saving type of a/s
+						System.out.println("Enter current interest rate");
+						double rate = sc.nextDouble();
+						for (BankAccount a1 : accts.values()) {
+							if (a1.getAcctType().equals(SAVING)) {
+								a1.applyInterest(rate);
+							}
+						}
+
+						System.out.println("Interest Applied...");
+
+						break;
+					case 7: // display customer names, whose a/c is created before a particular date
+						System.out.println("Enter date (yyyy-MM-dd)");
+						LocalDate date = parse(sc.next());
+						System.out.println("Customer name, whose a/c created before : " + date);
+						for (BankAccount a1 : accts.values()) {
+							if (a1.getCreatedOn().isBefore(date)) {
+								System.out.println(a1.getCustomerName());
+							}
+						}
+						break;
+					case 8:
+						System.out.println("Sorted A/c's as per asc acct nos");
+						// convert hashMap to TreeMap : populated
+						// TreeMap<Map<? extends K, ? extends V> map)
+						TreeMap<Integer, BankAccount> sortedAccts = new TreeMap<>(accts);
+						// In above stmt : JVM invokes : Integer class compareTo method : natural
+						// ordering : key based criteria : Integer's compareTO
+						// display accts info
+						for (BankAccount a1 : sortedAccts.values()) {
+							System.out.println(a1);
+						}
+						break;
+					case 9:
+						System.out.println("Sorted A/C's as per date and balance");
+						// here we will get class cast exception because we are trying to cast bank
+						// account to list : Collections.sort((List<BankAccount>) accts.values(), new
+						// Comparator<BankAccount>()
+						ArrayList<BankAccount> list = new ArrayList<>(accts.values());
+						Collections.sort(list, new Comparator<BankAccount>() {
+
+							@Override
+							public int compare(BankAccount o1, BankAccount o2) {
+								// date and balance
+								int ret = o1.getCreatedOn().compareTo(o2.getCreatedOn());
+								if (ret == 0) {
+									return ((Double) o1.getBalance()).compareTo(o2.getBalance());
+								}
+								return ret;
+							}
+
+						});
+						break;
+					case 10:
+						exit = true;
+						break;
+
+					default:
+						break;
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				sc.nextLine();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

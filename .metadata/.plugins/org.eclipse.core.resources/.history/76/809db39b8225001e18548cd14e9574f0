@@ -1,0 +1,72 @@
+package utils;
+
+import com.app.customer.Customer;
+
+import custom_exceptions.CustomerHandlingException;
+
+public class CustomerValidations {
+
+	/*
+	 * 3.1 email must be minimum 8 to max 15 chars long It should contain "@" n must
+	 * end in ".com" Hint : Use String class methods : contains , endsWith
+	 * 
+	 * 3.2 Password minimum length 6 to 20 & must contain atleast one of the special
+	 * characters : $ / @ /# n must be alpha numeric.
+	 * 
+	 * Help : If needed Use this regular expression :
+	 * "((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{6,20})" & use String class method :
+	 * matches
+	 * 
+	 * 3.3 reg amount must be in the multiples of 500
+	 * 
+	 * 3.4 Duplicate email checking.(Must use equals here)
+	 */
+
+	public static String checkEmail(String email) throws CustomerHandlingException {
+
+		if (email.length() < 8 || email.length() > 15) {
+			throw new CustomerHandlingException("Email length must be between 8-15 characters");
+		}
+
+		if (!email.contains("@")) {
+			throw new CustomerHandlingException("Email must contain '@'");
+		}
+
+		if (!email.endsWith(".com")) {
+			throw new CustomerHandlingException("Email must end with '.com'");
+		}
+
+		return email;
+	}
+
+	public static String checkPassword(String password) throws CustomerHandlingException {
+
+		if (!password.contains("((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{6,20})")) {
+			throw new CustomerHandlingException("Email must end with '.com'");
+		}
+
+		return password;
+	}
+
+	public static double checkRegAmount(double regAmount) throws CustomerHandlingException {
+
+		if (regAmount % 500 != 0) {
+			throw new CustomerHandlingException("Registration must be multiple of 500");
+		}
+
+		return regAmount;
+	}
+
+	public static String checkDuplicateEmail(Customer[] customers, String email) {
+
+		for (Customer c : customers) {
+			if (c != null) {
+				if (c.getEmail().equals(email)) {
+					throw new CustomerHandlingException("Duplicate Email!!!");
+				}
+			}
+		}
+
+	}
+
+}

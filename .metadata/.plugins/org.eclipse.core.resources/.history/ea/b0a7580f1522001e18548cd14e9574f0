@@ -1,0 +1,25 @@
+package arrays;
+
+import java.util.Arrays;
+
+public class Test2DArray {
+
+	public static void main(String[] args) {
+
+		double[][] data = new double[3][4];
+
+		// display
+		System.out.println("Class loaded for the first time : " + data);
+
+		for (double[] d : data) {
+			for (double d1 : d) {
+				System.out.print(d1 + " ");
+			}
+		}
+
+		// API to display multi dims array contents
+		System.out.println(Arrays.deepToString(data));
+
+	}
+
+}

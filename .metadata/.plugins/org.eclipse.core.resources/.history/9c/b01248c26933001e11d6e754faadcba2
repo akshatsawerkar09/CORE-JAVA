@@ -1,0 +1,32 @@
+package p1;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+
+		// Objective : remove odd elements from AL to ints
+		ArrayList<Integer> ints = new ArrayList<>(Arrays.asList(10, 23, 1, 234, 56, 78, 77, 45, 24));
+
+		ints.add(99); // no run time error
+
+		System.out.println(ints);
+
+		// Collection i/f method : public boolean removeIf(Predicate<? super T> filter)
+		// Predicate : func i/f
+		// SAM : public boolean test(T t)
+		// rets : true : element will be removed otherwise not
+		ints.removeIf(new Predicate<Integer>() {
+
+			@Override
+			public boolean test(Integer t) {
+				return t % 2 != 0;
+			}
+
+		});
+	}
+
+}

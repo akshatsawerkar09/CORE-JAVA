@@ -1,0 +1,17 @@
+package nested_classes;
+
+public class Outer2 {
+
+	private int i =;
+
+	class Inner2 {
+
+		private int i;
+
+		void show(int i) {
+			System.out.println();
+		}
+
+	}
+
+}

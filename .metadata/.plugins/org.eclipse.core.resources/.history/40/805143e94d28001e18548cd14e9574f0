@@ -1,0 +1,12 @@
+package nested_classes;
+
+public class Outer {
+
+	private int i;
+	private static int j;
+
+	public Outer(int i) {
+		this.i = i;
+	}
+
+}

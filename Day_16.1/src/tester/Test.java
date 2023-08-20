@@ -1,0 +1,116 @@
+package tester;
+
+import static java.time.LocalDate.parse;
+import static utils.CollectionUtils.populateEmpList;
+import static utils.CollectionUtils.checkIfExists;
+import static utils.EmpValidationConstraints.parseDate;
+import static utils.EmpValidationConstraints.validatEmpDetails;
+import static utils.EmpValidationConstraints.validateAdharCardLocation;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+import com.app.core.Emp;
+
+import custom_comparators.EmpJoinDateComparator;
+
+public class Test {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in)) {
+
+			// generate sample data
+
+			ArrayList<Emp> emps = populateEmpList();
+
+			boolean exit = false;
+
+			while (!exit) {
+
+				System.out.println(
+						"Options\n1.Add Emp\n2.Show All Emp's Details\n3.Fetch Emp details\n4.Assign adhar card details to emp\n5.Change Adhar card no\n6.Display names by card date\n7.Sort emps as per id and name\n8.Sort emps as per join date\n9.Sort emps as per date & salary\n10.Exit");
+
+				switch (sc.nextInt()) {
+				case 1:
+					System.out.println("Enter emp details : id, name, sal, joinDate(yr-mon-day), dept");
+
+					Emp e = validatEmpDetails(emps, sc.nextInt(), sc.next(), sc.nextDouble(), sc.next(), sc.next());
+
+					emps.add(e);
+
+					System.out.println("Emp registered successfully!!!!");
+
+					break;
+				case 2:// here null check is gone because for each goes from first to last element but
+						// in case of AL it goes to the size
+					for (Emp e1 : emps) {
+						System.out.println(e1);
+					}
+					break;
+				case 3:
+					// fetch emp details
+					System.out.println("Enter emp id & name");
+					System.out.println("Emp Details " + checkIfExists(emps, sc.nextInt(), sc.next()));
+
+					break;
+				case 4:
+					System.out.println("Enter emp id & name");
+					Emp emp = checkIfExists(emps, sc.nextInt(), sc.next());
+					// valid
+					System.out.println("Enter Adhar card details : cardNo, date, location");
+					emp.linkAdharCard(sc.next(), parseDate(sc.next()), validateAdharCardLocation(sc.next()));
+					System.out.println("adhar card linked!!!!!");
+					break;
+				case 5:
+					System.out.println("Enter emp id & name");
+					emp = checkIfExists(emps, sc.nextInt(), sc.next());
+					System.out.println("Enter new card no");
+					emp.setEmpAdharCardNumber(sc.next());
+					System.out.println("card no changed!!!!");
+					break;
+				case 7:
+					// sort as per id and name : natural ordering
+					Collections.sort(emps); // javac error emp class not implementing comparable i/f
+					break;
+				case 8:
+					// sort as per join date
+					Collections.sort(emps, new EmpJoinDateComparator());
+					break;
+				case 9:
+					Collections.sort(emps, new Comparator<Emp>() {
+
+						@Override
+						public int compare(Emp e1, Emp e2) {
+							System.out.println("in anno inner class : compare");
+							int ret = e1.getJoinDate().compareTo(e2.getJoinDate());
+							if (ret == 0) // same join date
+							{
+								ret = ((Double) e1.getSalary()).compareTo(e2.getSalary());
+							}
+							return ret;
+						}
+
+					});
+					break;
+				case 10:
+					sc.close();
+					exit = true;
+					break;
+
+				default:
+					break;
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

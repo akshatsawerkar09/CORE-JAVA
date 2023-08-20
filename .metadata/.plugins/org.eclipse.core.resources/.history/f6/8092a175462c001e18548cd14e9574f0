@@ -1,0 +1,27 @@
+package utils;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+import com.app.customer.Customer;
+
+import custom_exceptions.CustomerHandlingException;
+
+public class CollectionUtils {
+
+	public static Customer checkIfExist(ArrayList<Customer> customers, String email, Date dob)
+			throws CustomerHandlingException {
+
+		Customer customer = new Customer(email, dob);
+
+		int index = customers.indexOf(customer);
+
+		if (index < 0) {
+			throw new CustomerHandlingException("Invalid Emp credentials!!!!!");
+		}
+
+		return customers.get(index);
+
+	}
+
+}

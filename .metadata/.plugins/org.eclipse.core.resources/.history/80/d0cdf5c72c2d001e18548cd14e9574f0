@@ -1,0 +1,197 @@
+package tester;
+
+import java.util.ArrayList;
+import static utils.CollectionUtils.checkIfExist;
+import java.util.Date;
+import java.util.Scanner;
+
+import com.app.customer.Customer;
+import com.app.customer.CustomerType;
+
+import custom_exceptions.CustomerHandlingException;
+
+import static utils.CustomerValidations.*;
+
+public class CustomerRegistration {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in);) {
+
+			System.out.println("Enter number of customers");
+
+			ArrayList<Customer> customersList = new ArrayList<>();
+
+			while (true) {
+
+				System.out.println(
+						"1.Register new customer\n2.Fetch customer details\n3.Customer login\n4.Unsubscribe customer\n5.Display all customer details\n6.Change phone no\n7.Display phone nos of all customers, whose dob is within a range & who have paid reg amount > specified reg amount.");
+
+				switch (sc.nextInt()) {
+
+				case 1:
+
+					System.out.println("Enter email");
+
+					String email = checkEmail(sc.next());
+
+					email = checkDuplicateEmail(customersList, email);
+
+					System.out.println("Enter password");
+
+					String password = checkPassword(sc.next());
+
+					System.out.println("Enter name");
+
+					String name = sc.next();
+
+					System.out.println("Enter registration amount");
+
+					double registrationAmount = checkRegAmount(sc.nextDouble());
+
+					System.out.println("Enter Dob");
+
+					Date dob = checkDob(sdf.parse(sc.next()));
+
+					System.out.println("Enter customer type");
+
+					CustomerType customerType = CustomerType.valueOf(sc.next().toUpperCase());
+
+					Customer customer = new Customer(email, password, name, registrationAmount, dob, customerType);
+
+					customersList.add(customer);
+
+					System.out.println("Customer Registered successfully!!!!");
+
+					break;
+				case 2:
+
+					System.out.println("Enter email");
+
+					String customerEmail = checkEmail(sc.next());
+
+					System.out.println("Enter dob");
+
+					Date customerDob = checkDob(sdf.parse(sc.next()));
+
+					Customer testCustomer = checkIfExist(customersList, customerEmail, customerDob);
+
+					if (customersList.indexOf(testCustomer) < 0) {
+						throw new CustomerHandlingException("Customer Details not found!!!!!");
+					}
+
+					System.out.println(customersList.get(customersList.indexOf(testCustomer)));
+
+					break;
+				case 3:
+
+					System.out.println("Enter email");
+					String custEmail = checkEmail(sc.next());
+					System.out.println("Enter password");
+					String custPassword = checkPassword(sc.next());
+					System.out.println("Enter dob");
+					Date custDob = checkDob(sdf.parse(sc.next()));
+
+					Customer checkCustomer = new Customer(custEmail, custPassword, custDob);
+
+					int indexCheck = customersList.indexOf(checkCustomer);
+
+					if (indexCheck < 0) {
+						throw new CustomerHandlingException("Invalid Credentials");
+					}
+
+					System.out.println(customersList.get(customersList.indexOf(checkCustomer)));
+
+					break;
+				case 4:
+
+					System.out.println("Enter email");
+
+					String custEmailId = checkEmail(sc.next());
+
+					System.out.println("Enter dob");
+
+					Date custDateOfBirth = checkDob(sdf.parse(sc.next()));
+
+					Customer customerCheck = checkIfExist(customersList, custEmailId, custDateOfBirth);
+
+					int indexOfCustomer = customersList.indexOf(customerCheck);
+
+					if (indexOfCustomer < 0) {
+						throw new CustomerHandlingException("Invalid Credentials!!!!");
+					}
+
+					customersList.remove(customersList.get(indexOfCustomer));
+
+					System.out.println("Customer Unsubscribed!!!!");
+
+					break;
+				case 5:
+
+					System.out.println("Display all customers details");
+					for (Customer c : customersList) {
+						if (c != null) {
+							System.out.println(c);
+						}
+					}
+
+					break;
+				case 6:
+					System.out.println("Enter email");
+					String customer_email = checkEmail(sc.next());
+					System.out.println("Enter password");
+					String customer_pass = checkPassword(sc.next());
+					System.out.println("Enter dob");
+					Date customer_dob = sdf.parse(sc.next());
+
+					for (Customer c : customersList) {
+						if (c != null) {
+							if (c.getEmail().equals(customer_email) && c.getPassword().equals(customer_pass)
+									&& c.getDob().equals(customer_dob)) {
+								System.out.println("Enter phone no");
+								c.setPhoneNo(sc.next());
+								System.out.println("Phone number changes successfully!!!!!");
+							}
+						}
+					}
+
+					break;
+				case 7:
+					/*
+					 * 5.2 Display phone nos of all customers , whose dob is within a range & who
+					 * have paid reg amount > specified reg amount. I/P : begin_date , end_date ,
+					 * specific reg amount. API : LocalDate : isAfter , isBefore
+					 */
+					System.out.println("Enter start date");
+					Date startDate = sdf.parse(sc.next());
+					System.out.println("Enter end date");
+					Date endDate = sdf.parse(sc.next());
+					System.out.println("Enter amount");
+					double regAmount = sc.nextDouble();
+
+					for (Customer c : customersList) {
+						if (c != null) {
+							if (c.getDob().after(startDate) && c.getDob().before(endDate)
+									&& c.getRegistrationAmount() > regAmount) {
+								System.out.println(c.getPhoneNo());
+							}
+						}
+					}
+
+					break;
+
+				default:
+					break;
+				}
+
+			}
+
+		} catch (
+
+		Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

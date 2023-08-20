@@ -1,0 +1,113 @@
+package maps;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import com.app.core.AcType;
+import com.app.core.BankAccount;
+
+import static utils.BankValidationRules.validateBalance;
+
+import custom_exceptions.AccountHandlingException;
+
+public class BankAccountCRUD {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+
+			// create empty map to store acct details : O(1)
+			HashMap<Integer, BankAccount> accts = new HashMap<>(); // init capacity = 16 load factor = .75f
+
+			boolean exit = false;
+
+			while (!exit) {
+
+				System.out.println(
+						"Options\n1.Open A/C\n2.Display all accts\n3.View A/C summary\n4.Funds Transfer\n5.Close A/c\n10.Exit");
+
+				try {
+
+					switch (sc.nextInt()) {
+					case 1:
+						// create A/C
+						System.out.println("Enter a/c details acctNo, customerName, acctType, balance, createdOn");
+						// either use containsKey or putIfAbsent
+						int acctNo = sc.nextInt();
+						if (accts.containsKey(acctNo)) {
+							throw new AccountHandlingException("Duplicate A/C no");
+						}
+						// duplicate not detected
+						System.out.println(accts.put(acctNo,
+								new BankAccount(acctNo, sc.next(), AcType.valueOf(sc.next().toUpperCase()),
+										validateBalance(sc.nextDouble()), LocalDate.parse(sc.next()))));
+						System.out.println("A/C created");
+						break;
+					case 2:
+						System.out.println("All Accounts");
+						// System.out.println(accts);
+						// to convert maps to collection
+						for (BankAccount a : accts.values()) {
+							System.out.println(a);
+						}
+						break;
+					case 3: // get A/c summary
+						System.out.println("Enter acct no for checking a/c summary");
+						BankAccount a = accts.get(sc.nextInt());// o(1) auto boxing , JVM key's hashcode - derives
+																// bucket id - empty
+						// rets - null otherwise : invokes equals : true : rest value ref, if false :
+						// rets null
+						if (a == null) {
+							throw new AccountHandlingException("A/c not found : invalid a/c no");
+						}
+						System.out.println("A/c summary " + a);
+						break;
+					case 4: // funds transfer
+						System.out.println("Enter src, dest acct no and transfer amount");
+						int srcAcctNo = sc.nextInt();
+						int destAcctNo = sc.nextInt();
+						double amount = sc.nextDouble();
+						BankAccount src = accts.get(srcAcctNo);
+						if (src == null) {
+							throw new AccountHandlingException("Src A/C not found : invalid a/c no");
+						}
+						BankAccount dest = accts.get(destAcctNo);
+						if (dest == null) {
+							throw new AccountHandlingException("Dest A/C not found : invalid a/c no");
+						}
+						// src and dest exist
+						src.transferFunds(dest, amount);
+						System.out.println("Funds transfered....");
+						break;
+					case 5: // close A/C
+						System.out.println("Enter acct no for closing A/C");
+						a = accts.remove(sc.nextInt());
+						if (a == null) {
+							throw new AccountHandlingException("A/C not found : can't close it!!!!");
+						}
+						System.out.println("A/C closed!!! " + a);
+						break;
+					case 6:
+						break;
+					case 10:
+						exit = true;
+						break;
+
+					default:
+						break;
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				sc.nextLine();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

@@ -1,0 +1,21 @@
+package inh;
+
+public class Student extends Person {
+
+	// after extending from person we are getting javac error because if we donn't
+	// supply constr javac auto apply default constr and first keyword is super and
+	// it is unable to find default constr in person class
+	private int gradYear;
+	private String courseName;
+	private double fess;
+	private int marks;
+
+	public Student(String fName, String lName, int gradYear, String courseName, double fess, int marks) {
+		super(fName, lName);
+		this.gradYear = gradYear;
+		this.courseName = courseName;
+		this.fess = fess;
+		this.marks = marks;
+	}
+
+}

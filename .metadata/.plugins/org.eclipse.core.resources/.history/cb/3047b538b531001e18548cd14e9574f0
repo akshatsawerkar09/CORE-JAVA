@@ -1,0 +1,37 @@
+package com.app.core;
+
+import java.time.LocalDate;
+
+public class BankAccount {
+
+	private int acctNo;
+	private String customerName;
+	private AcType acctType;
+	private double balance;
+	private LocalDate createdOn;
+
+	public BankAccount(int acctNo, String customerName, AcType acctType, double balance, LocalDate createdOn) {
+		super();
+		this.acctNo = acctNo;
+		this.customerName = customerName;
+		this.acctType = acctType;
+		this.balance = balance;
+		this.createdOn = createdOn;
+	}
+
+	@Override
+	public String toString() {
+		return "BankAccount [acctNo=" + acctNo + ", customerName=" + customerName + ", acctType=" + acctType
+				+ ", balance=" + balance + ", createdOn=" + createdOn + "]";
+	}
+
+	// BL methods
+	public void deposit(double amount) {
+		this.balance += amount;
+	}
+
+	public void withdraw(double amount) {
+		this.balance += amount;
+	}
+
+}

@@ -1,0 +1,43 @@
+package com.app.core;
+
+import java.util.Date;
+import static tester.Test.sdf;
+
+public class Emp {
+
+	private int id;
+	private String name;
+	private double salary;
+	private Date joinDate;
+	private Department dept
+
+	public Emp(int id, String name, double salary, Date joinDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.salary = salary;
+		this.joinDate = joinDate;
+	}
+
+	public Emp(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Emp [id=" + id + ", name=" + name + ", salary=" + salary + ", joinDate=" + sdf.format(joinDate) + "]";
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		System.out.println("In emp equals");
+		if (o instanceof Emp) {
+			return this.id == ((Emp) o).id;
+		}
+		return false;
+
+	}
+
+}

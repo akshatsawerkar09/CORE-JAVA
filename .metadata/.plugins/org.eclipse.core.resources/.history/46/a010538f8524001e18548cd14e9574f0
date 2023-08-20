@@ -1,0 +1,75 @@
+package tester;
+
+import java.util.Scanner;
+
+import com.app.fruits.Apple;
+import com.app.fruits.Cherry;
+import com.app.fruits.Fruit;
+import com.app.fruits.Orange;
+
+public class Tester {
+
+	/*
+	 * 2.3. Write a Tester to create basket of fruits. : package "tester" Prompt for
+	 * size of a fruit basket n create suitable data structure. (populate basket
+	 * based upon user's choice) Menu 1. Add Apple Boundary checking
+	 * sop("Enter name "); eg : addFruit(new Apple(sc.next()),basket,index);
+	 * index++; 2. Add Orange : boundary chk 3. Add Cherry NOTE : Accept name of the
+	 * fruit form user. In above options : you should call addFruit method of
+	 * FruitUtils class & then chosen fruit should get added in the basket. 4.
+	 * Display taste of all fruits in the basket. : for-each eg : for (Fruit f :
+	 * basket) f.taste(); 10. Exit : terminate the application.
+	 */
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		Fruit[] basket = new Fruit[sc.nextInt()];
+
+		int counter = 0;
+
+		while (true) {
+
+			System.out.println("1.Add Apple\n2.Add Orange\n3.Add Cherry\n4.Display Taste\n10.Exit");
+
+			switch (sc.nextInt()) {
+			case 1:
+				if (counter < basket.length) {
+					System.out.println("Enter apple name");
+					basket[counter] = new Apple(sc.next());
+					counter++;
+				} else {
+					System.out.println("Basket Full!!!!");
+				}
+				break;
+			case 2:
+				if (counter < basket.length) {
+					System.out.println("Enter orange name");
+					basket[counter] = new Orange(sc.next());
+					counter++;
+				} else {
+					System.out.println("Basket Full!!!!");
+				}
+				break;
+			case 3:
+				if (counter < basket.length) {
+					System.out.println("Enter cherry name");
+					basket[counter] = new Cherry(sc.next());
+					counter++;
+				} else {
+					System.out.println("Basket Full!!!!");
+				}
+				break;
+			case 4:
+				break;
+
+			default:
+				break;
+			}
+
+		}
+
+	}
+
+}

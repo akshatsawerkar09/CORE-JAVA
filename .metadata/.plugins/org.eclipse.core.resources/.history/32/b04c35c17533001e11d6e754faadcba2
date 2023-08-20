@@ -1,0 +1,19 @@
+package p1;
+
+import static utils.CollectionUtils.*;
+
+import java.util.Map;
+
+import com.app.core.Product;
+
+public class Test7 {
+
+	public static void main(String[] args) {
+
+		// get populated map of products
+		Map<Integer, Product> map = populateMap(populateData());
+
+		System.out.println(map);
+	}
+
+}

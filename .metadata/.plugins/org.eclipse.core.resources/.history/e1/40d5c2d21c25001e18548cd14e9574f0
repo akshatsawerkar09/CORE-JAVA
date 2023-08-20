@@ -1,0 +1,17 @@
+package p6;
+
+public class Rectangle extends Point2D implements Computable {
+
+	@Override
+	public double calcArea() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double calcPerimeter() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

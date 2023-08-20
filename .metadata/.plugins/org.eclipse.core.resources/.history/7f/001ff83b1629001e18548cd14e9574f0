@@ -1,0 +1,35 @@
+package lists;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class IntegerList2 {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in)) {
+
+			// create empty array list with default init capacity
+			ArrayList<Integer> list = new ArrayList<>();
+
+			// size = 0, capacity = 10
+			int[] data = { 10, 12, 21, -45, 10, 23, 56, 77, 89, 12 };
+
+			// populate AL with this data
+			for (int i : data) {
+				list.add(i);
+			}
+
+			// display elements in AL
+			System.out.println("AL contents via toString");
+
+			System.out.println(list);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

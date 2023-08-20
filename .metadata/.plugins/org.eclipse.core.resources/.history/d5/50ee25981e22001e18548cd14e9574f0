@@ -1,0 +1,10 @@
+package p1;
+
+public class C {
+
+	public C() {
+		A a = new A();
+		System.out.println("C's state " + a.j + " " + a.k + " " + a.l);
+	}
+
+}

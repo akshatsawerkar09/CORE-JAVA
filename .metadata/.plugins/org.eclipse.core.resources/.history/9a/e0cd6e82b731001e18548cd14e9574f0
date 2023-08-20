@@ -1,0 +1,36 @@
+package maps;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+import com.app.core.BankAccount;
+
+public class BankAccountCRUD {
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+
+			// create empty map to store acct details : O(1)
+			HashMap<Integer, BankAccount> accts = new HashMap<>();
+
+			boolean exit = false;
+
+			while (!exit) {
+
+				System.out.println("Options\n1.Open A/C\n2.View A/C summary\n3.Funds Transfer\n4.Close A/c\n10.Exit");
+
+				try {
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

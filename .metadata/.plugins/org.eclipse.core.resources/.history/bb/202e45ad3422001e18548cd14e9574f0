@@ -1,0 +1,14 @@
+package inh;
+
+public class Faculty extends Person {
+
+	private int expInYears;
+	private String sme;
+
+	public Faculty(String fName, String lName, int yrs, String sme) {
+		super(fName, lName);
+		expInYears = yrs;
+		this.sme = sme;
+	}
+
+}

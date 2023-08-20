@@ -1,0 +1,21 @@
+package utils;
+
+import custom_exceptions.AccountHandlingException;
+
+public class BankValidationRules {
+
+	public static double MIN_BALANCE;
+
+	static {
+		MIN_BALANCE = 1000;
+	}
+
+	// Add a static method for validating balance
+	public static double validateBalance(double balance) throws AccountHandlingException {
+		if (balance < MIN_BALANCE) {
+			throw new AccountHandlingException("A/c Overdrawa!!!");
+		}
+		return balance;
+	}
+
+}

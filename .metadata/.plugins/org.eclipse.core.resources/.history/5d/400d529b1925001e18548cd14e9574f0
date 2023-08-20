@@ -1,0 +1,11 @@
+package p3;
+
+public class ConsolePrinter implements Printable {
+
+	@Override
+	public void print(String message) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

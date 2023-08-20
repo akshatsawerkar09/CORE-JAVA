@@ -1,0 +1,14 @@
+package arrays;
+
+public class Test2DArray {
+
+	public static void main(String[] args) {
+
+		double[][] data = new double[3][4];
+
+		// display
+		System.out.println("Class loaded for the first time : " + data);
+
+	}
+
+}

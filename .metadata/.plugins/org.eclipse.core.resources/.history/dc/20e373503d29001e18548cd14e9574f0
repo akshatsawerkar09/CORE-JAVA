@@ -1,0 +1,10 @@
+package test_generics;
+
+public class TestGenericMethod {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,22 @@
+package tester;
+
+import java.io.FileReader;
+import java.util.Scanner;
+
+public class TestCheckedException {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("enter text file name to read data from");
+
+		FileReader fin = new FileReader(sc.nextLine());
+
+		fin.close();
+
+		sc.close();
+
+	}
+
+}

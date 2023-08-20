@@ -1,0 +1,27 @@
+package com.app.geometry;
+
+public class Point2D {
+
+	private int x, y;
+
+	// 3.1 Create a parameterized constructor to accept x & y co-ords.
+	public Point2D(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	// 3.2 Add public String getDetails()) --to return string form point's x & y
+	// co-ords
+	public String getDetails() {
+		return x + " " + y;
+	}
+
+	/*
+	 * 3.3 Add isEqual method to Point2D class : boolean returning method : must
+	 * return true if both points are having same x,y co-ords or false otherwise. eg
+	 * : boolean isEqual(Point2D anotherPoint){....}
+	 */
+	public boolean isEqual(Point2D anotherPoint) {
+		return (this.x == anotherPoint.x) && (this.y == anotherPoint.y);
+	}
+}

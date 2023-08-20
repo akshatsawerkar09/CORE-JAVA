@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;IntegerList.java&apos; to &apos;Day_14.1/src/lists&apos;&#x0D;&#x0A;- Original project: &apos;Day_14.1&apos;&#x0D;&#x0A;- Destination element: &apos;Day_14.1/src/lists&apos;&#x0D;&#x0A;- Original element: &apos;lists.IntegerList.java&apos;" description="Copy compilation unit" destination="/src&lt;lists" element1="/src&lt;lists{IntegerList.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1690088291086" units="1" version="1.0"/>
+</session>

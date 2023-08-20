@@ -1,0 +1,14 @@
+package nested_classes;
+
+public class Tester {
+
+	public static void main(String[] args) {
+
+		// Invoke functionality(show Inner) of the inner class
+		Outer.Inner ref = new Outer(1234).new Inner(456);
+
+		ref.showInner();
+
+	}
+
+}

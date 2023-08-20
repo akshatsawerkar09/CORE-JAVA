@@ -1,0 +1,30 @@
+package com.app.org;
+
+public class Worker extends Emp {
+
+	/*
+	 * 3.3 Worker state --id,name,basic,deptId,hoursWorked,hourlyRate Behaviour---
+	 * 1. get worker details -- : override toString. 2. compute net salary (formula:
+	 * = basic+(hoursWorked*hourlyRate) --override computeNetSalary 3. get hrlyRate
+	 * of the worker -- add a new method to return hourly rate of a worker.(getter)
+	 */
+
+	private double hoursWorked, hourlyRate;
+
+	public Worker(int id, String name, String deptId, double basic, double hoursWorked, double hourlyRate) {
+		super(id, name, deptId, basic);
+		this.hoursWorked = hoursWorked;
+		this.hourlyRate = hourlyRate;
+	}
+
+	@Override
+	public double computeNetSalary() {
+		return getBasic() + (hoursWorked * hourlyRate);
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", hoursWorked = " + hoursWorked + ", hourlyRate = " + hourlyRate;
+	}
+
+}

@@ -1,0 +1,36 @@
+package com.app.food;
+
+import java.util.Scanner;
+
+public class Menu {
+
+	public static void main(String[] args) {
+
+		int dosa = 50;
+		int samosa = 20;
+		int noodles = 100;
+		int rice = 150;
+		int total =0;
+		int quantity = 0;
+
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+
+			System.out.println("Enter from Menu\n1.Dosa = 50\n2.Samosa = 50\n3.Noodles = 50\n4.Rice = 50\n10.Generate Bill");
+
+			switch (key) {
+		case value:
+			
+			break;
+
+		default:
+			break;
+		}
+		
+		
+		}
+
+	}
+
+}

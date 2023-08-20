@@ -1,0 +1,11 @@
+package var_args;
+
+public class Tester {
+
+	public static void main(String[] args) {
+
+		// Different ways to invoke method with var-args
+
+	}
+
+}

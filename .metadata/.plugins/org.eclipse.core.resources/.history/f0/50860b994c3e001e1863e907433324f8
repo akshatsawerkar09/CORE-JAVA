@@ -1,0 +1,35 @@
+package p2;
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+
+		// different ways of attaching streams to data source
+		int[] data = { 12, 34, 1, 67, 89, 44, 567 };
+
+		// objective : display ints : FP
+
+		System.out.println("Array contents before sorting");
+
+		// array -> sequential stream -> forEach
+		Arrays.stream(data).forEach(i -> System.out.print(i + " "));
+
+		System.out.println("\nArray contents after sorting");
+
+		// array - sequential stream -- sorted desc order -- display
+		// Arrays.stream(data) return IntStream whose method sorted : it is intermediate
+		// because it return stream result
+		Arrays.stream(data).sorted().forEach(i -> System.out.print(i + " "));
+
+		System.out.println("\nIntream filtering odd elems");
+
+		// objective create int stream in the range of 1....100. filter out odd elem,
+		// sort the data and print
+		IntStream.rangeClosed(1, 100).filter(i -> i % 2 == 0).forEach(i -> System.out.println(i + " "));
+
+	}
+
+}

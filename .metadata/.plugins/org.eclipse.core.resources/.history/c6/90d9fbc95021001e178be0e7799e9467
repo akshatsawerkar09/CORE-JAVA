@@ -1,0 +1,23 @@
+package com.app.tester;
+
+import java.util.Scanner;
+
+import com.app.cdac.Box;
+
+public class TestCube {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		Box cube = new Box(sc.nextDouble());
+
+		System.out.println(cube.getBoxDetails());
+
+		System.out.println("Volume " + cube.computeVolume());
+
+		sc.close();
+
+	}
+
+}

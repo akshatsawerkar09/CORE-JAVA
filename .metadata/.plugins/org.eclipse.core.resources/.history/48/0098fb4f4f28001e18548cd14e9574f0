@@ -1,0 +1,39 @@
+package nested_classes;
+
+public class Outer {
+
+	private int i;
+	private static int j;
+
+	static {
+		j = 100;
+	}
+
+	public Outer(int i) {
+		super();
+		this.i = i;
+	}
+
+	// static method
+	public static void show() {
+		System.out.println("Outer's show : static " + j);
+	}
+
+	// non static method
+	public void display() {
+		System.out.println("Outer's display : non static " + i + " static " + j);
+	}
+
+	// nested class : non static nested class : inner class
+	class Inner {
+
+		// data members : non static
+		private int a;
+		// earlier we can't add static member in non static nested class : inner class
+		// but we can add static final member in non static nested class
+		// but we can't add static init block in inner class
+		private static final int b = 200;
+
+	}
+
+}

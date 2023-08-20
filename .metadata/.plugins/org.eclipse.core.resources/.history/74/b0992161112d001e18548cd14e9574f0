@@ -1,0 +1,11 @@
+package sets;
+
+public class IntegerSet {
+
+	public static void main(String[] args) {
+
+		int[] data = { 12, 34, 1, 45, 12, -90, 48, 111, 12, 34 };
+
+	}
+
+}

@@ -1,0 +1,11 @@
+package p3;
+
+public class ConsolePrinter implements Printable {
+
+	@Override
+	public void print(String message) {
+		System.out.println("Printing message : " + message + " on the console");
+
+	}
+
+}

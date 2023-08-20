@@ -1,0 +1,24 @@
+package test_date;
+
+import java.time.LocalDate;
+import java.util.Scanner;
+
+import static java.time.LocalDate.parse;
+
+public class TestLocalDate {
+
+	public static void main(String[] args) {
+
+		try (Scanner sc = new Scanner(System.in)) {
+
+			System.out.println("Enter birth date (yr-mon-day)");
+
+			LocalDate dob = parse(sc.next());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

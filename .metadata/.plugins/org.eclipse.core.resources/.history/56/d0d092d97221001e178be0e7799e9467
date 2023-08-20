@@ -1,0 +1,31 @@
+package arrays;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+
+		double[] values = new double[10];
+
+		// display array contents
+		System.out.println("Default Array contents");
+
+		for (double a : values) {
+			System.out.print(a + " ");
+		}
+
+		// init array 1,2...10
+		System.out.println("Init array contents using for-each\n");
+
+		int counter = 1;
+
+		for (double d : values) {
+			d = counter++;
+		}
+
+		for (double a : values) {
+			System.out.print(a + " ");
+		}
+
+	}
+
+}

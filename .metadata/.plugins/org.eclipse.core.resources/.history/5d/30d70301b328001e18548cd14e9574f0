@@ -1,0 +1,13 @@
+package var_args;
+
+import static var_args.Utils.displayNames;
+
+public class Tester {
+
+	public static void main(String[] args) {
+
+		// Different ways to invoke method with var-args
+
+	}
+
+}
